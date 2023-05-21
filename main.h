@@ -7,9 +7,10 @@
 #include <string.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <stdbool.h>
 
 void prompt(char **av, char **env);
-void text_prompt();
+int text_prompt();
 int _puts(const char *string);
 int _putchar(char c);
 int _getline(char *buffer, size_t size);
