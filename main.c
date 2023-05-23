@@ -31,6 +31,7 @@ void prompt(char **av, char **env)
 		}
 		
 		j = 0;
+		/* add exit here */
 		argv[j] = strtok(buffer, " ");
 
 		while (argv[j] != NULL)
