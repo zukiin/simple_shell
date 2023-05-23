@@ -8,21 +8,24 @@ void prompt(char **av, char **env)
 	size_t size = 0;
 	char *buffer = NULL;
 	int i, j, status;
+	bool not_term = false;
 	char *argv[MAX_COMMAND];
 	pid_t child_pid;
 
-	while(1)
+	while(!(not_term) && 1)
 	{
-		text_prompt();
+		if (text_prompt() == 0)
+			not_term = true;
 		char_num = getline(&buffer, &size, stdin);
 		if (char_num == -1)
 		{
 			free(buffer);
+			perror("Getline failed");
 			exit(EXIT_FAILURE);
 		}
 		i = 0;
 		while (buffer[i])
-		{
+		
 			if (buffer[i] == '\n')
 			{
 				buffer[i] = '\0';
@@ -43,6 +46,7 @@ void prompt(char **av, char **env)
 		if (child_pid == -1)
 		{
 			free(buffer);
+			perror("(fork) Error");
 			exit(EXIT_FAILURE);
 		}
 
@@ -50,7 +54,7 @@ void prompt(char **av, char **env)
 		{
 			if (execve(argv[0], argv, env) == -1)
 			{
-				printf("%s: No such file or directory\n", av[0]);
+				_puts("%s: No such file or directory\n", av[0]);
 			}
 
 		}

@@ -1,9 +1,67 @@
 #include "main.h"
 
-void text_prompt()
-{
-	const char *text_prompt = "cisfun$ ";
+#define MAX_COMMAND 10
 
-	if (isatty(STDIN_FILENO))
-		write(STDOUT_FILENO, text_prompt, strlen(text_prompt));
+void prompt(char **av, char **env)
+{
+	ssize_t char_num;
+	size_t size = 0, is_inbuilt = 0;
+	char **buffer = NULL;
+	int i, j, status;
+	bool not_term = false;
+	char *argv[MAX_COMMAND];
+	pid_t child_pid;
+
+	while(!(not_term) && 1)
+	{
+		if (text_prompt() == 0)
+			not_term = true;
+		char_num = getline(&buffer, &size, stdin);
+		if (char_num == -1)
+		{
+			free(buffer);
+			perror("Getline failed");
+			exit(EXIT_FAILURE);
+		}
+		i = 0;
+		while (buffer != '\n')
+		{
+			buffer = str_split(buffer);
+			if (_strcmp("exit", buffer[0] == 0)
+				break;
+			is_inbuilt = handle_inbuilt(buffer[0]);
+			{
+				buffer[i] = '\0';
+			}
+			i++;
+		}
+		
+		j = 0;
+		argv[j] = strtok(buffer, " ");
+
+		while (argv[j] != NULL)
+		{
+			j++;
+			argv[j] = strtok(NULL, " ");
+		}
+		child_pid = fork();
+		if (child_pid == -1)
+		{
+			free(buffer);
+			perror("(fork) Error");
+			exit(EXIT_FAILURE);
+		}
+
+		if (child_pid == 0)
+		{
+			if (execve(argv[0], argv, env) == -1)
+			{
+				_puts("%s: No such file or directory\n", av[0]);
+			}
+
+		}
+
+		else
+			wait(&status);
+		}
 }
