@@ -27,3 +27,19 @@ void prompt(char **av, char **env) {
 		execute_command(av, env, buffer);
 	}
 }
+
+/**
+  * text_prompt - prompts for text
+  * Returns value.
+  */
+int text_prompt(void)
+{
+	const char *text_prompt = "cisfun$ ";
+	int value;
+
+	value = (isatty(STDIN_FILENO));
+	if (value == 1)
+	write(STDOUT_FILENO, text_prompt, strlen(text_prompt));
+	/* above funct is to create a strlen function */
+	return (value);
+}
