@@ -1,5 +1,10 @@
 #include "main.h"
 
+/**
+  * main - entry point for program
+  * Return: 0 on success
+  */
+
 int main(void)
 {
 	ssize_t len = 0;
@@ -15,7 +20,6 @@ int main(void)
 		len = getline(&buffer, &size, stdin);
 		_EOF(len, buffer);
 		argv = str_split(buffer, "\n");
-
 		if (argv == NULL || argv[0] == NULL)
 			_exec(argv);
 		else
@@ -24,7 +28,6 @@ int main(void)
 			head = path_link(result);
 			pathname = find_path(head, argv[0]);
 			fptr = inbuilt(argv);
-
 			if (fptr)
 			{
 				free(buffer);

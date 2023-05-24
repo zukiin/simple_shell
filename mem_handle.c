@@ -1,5 +1,12 @@
 #include "main.h"
 
+/**
+  * re_alloc - reallocates memory
+  * @ptr: pointer to previously allocated mem
+  * @old_size: pointer's size
+  * @new_size: size of new malloc
+  * Return: new malloc
+  */
 void *re_alloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
 	char *new, *former;
@@ -39,6 +46,10 @@ void *re_alloc(void *ptr, unsigned int old_size, unsigned int new_size)
 	return (new);
 }
 
+/**
+  * free_argv - frees argument vector
+  * @arg: array of char to free
+  */
 void free_argv(char **arg)
 {
 	int a;

@@ -1,5 +1,9 @@
 #include "main.h"
 
+/**
+  * _exec - executes a command
+  * @argv: char array
+  */
 void _exec(char **argv)
 {
 	int p, status;

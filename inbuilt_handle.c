@@ -1,5 +1,11 @@
 #include "main.h"
 
+/**
+  * inbuilt - ...
+  * @argv: array of args
+  * @argv: arr of args
+  * Return: 0 on success
+  */
 void (*inbuilt(char **argv))(char **argv)
 {
 	int ind, index;
@@ -11,7 +17,7 @@ void (*inbuilt(char **argv))(char **argv)
 		{NULL, NULL}
 	};
 
-	for(ind = 0; F[ind].name; ind++)
+	for (ind = 0; F[ind].name; ind++)
 	{
 		index = 0;
 		if (F[ind].name[index] == argv[0][index])
