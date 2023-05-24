@@ -1,9 +1,14 @@
 #include "main.h"
 
+/**
+  * _atoi - converts a string to an int value
+  * @s: string being passed
+  * Return: an int value
+  */
 int _atoi(const char *s)
 {
 	int index = 0, result = 0, sign = 1;
-	
+
 	if (s[index] == '+' || s[index] == '-')
 	{
 		sign = (s[index] == '-') ? -1 : 1;
@@ -11,7 +16,8 @@ int _atoi(const char *s)
 	}
 	while ((s[index] >= '0') && (s[index] <= '9') && s[index] != '\0')
 	{
-		if (result > INT_MAX / 10 || (result == INT_MAX / 10 && (s[index] - '0') > INT_MAX % 10))
+		if (result > INT_MAX / 10 || (result == INT_MAX / 10 &&
+					(s[index] - '0') > INT_MAX % 10))
 		{
 			_exit(EXIT_FAILURE);
 		}
@@ -21,10 +27,17 @@ int _atoi(const char *s)
 	return (sign * result);
 }
 
+/**
+  * str_split - splits strings into multiple substrings
+  * @string: string to split
+  * @delimiter: delimiter between strings
+  * Return: an array of split substrings
+  */
+
 char **str_split(char *string, const char *delimiter)
 {
 	int a, b;
-	char **array;
+	char **arr;
 	char *split, *temp;
 
 	temp = malloc(1 + _strlen(string));
@@ -42,8 +55,8 @@ char **str_split(char *string, const char *delimiter)
 	temp[a] = '\0';
 
 	split = strtok(temp, delimiter);
-	array = malloc(sizeof(char *) * 2);
-	array[0] = _strdup(split);
+	arr = malloc(sizeof(char *) * 2);
+	arr[0] = _strdup(split);
 
 	a = 1;
 	b = 3;
@@ -51,11 +64,11 @@ char **str_split(char *string, const char *delimiter)
 	while (split)
 	{
 		split = strtok(NULL, delimiter);
-		array = re_alloc(array, (sizeof(char *) * (b - 1)), sizeof(char *) * b);
-		array[a] = _strdup(split);
+		arr = re_alloc(arr, (sizeof(char *) * (b - 1)), sizeof(char *) * b);
+		arr[a] = _strdup(split);
 		a++;
 		b++;
 	}
 	free(temp);
-	return (array);
+	return (arr);
 }

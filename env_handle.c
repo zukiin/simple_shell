@@ -1,5 +1,9 @@
 #include "main.h"
 
+/**
+  * term_exit - frees up memory and exits the terminal
+  * @argv: array vector
+  */
 void term_exit(char **argv)
 {
 	int index1, index2;
@@ -15,9 +19,14 @@ void term_exit(char **argv)
 	for (index2 = 0; argv[index2]; index2++)
 		free(argv[index2]);
 	free(argv);
-	exit (0);
+	exit(0);
 }
 
+/**
+  * _getenv - searches for a specific env variable based on string passed
+  * @file: string passed
+  * Return: pointer to the env variable on Success or NULL on fail
+  */
 char *_getenv(const char *file)
 {
 	int a = 0, b;
@@ -47,11 +56,14 @@ char *_getenv(const char *file)
 	return (0);
 }
 
-
+/**
+  * set_env - set env variable based on value provided
+  * @argv: array vector
+  */
 void set_env(char **argv)
 {
-	int a = 0, b, c;
-	
+	int a = 0, b = 0, c = 0;
+
 	environ = (char **) malloc(_strlen(argv[0] + strlen(argv[1] + 2)));
 	if (environ == NULL)
 	{
@@ -65,7 +77,6 @@ void set_env(char **argv)
 	}
 	for (; environ[a]; a++)
 	{
-		b = 0;
 		if (argv[1][b] == environ[a][b])
 		{
 			while (argv[1][b])
@@ -76,7 +87,6 @@ void set_env(char **argv)
 			}
 			if (argv[1][b] == '\0')
 			{
-				c = 0;
 				while (argv[2][c])
 				{
 					environ[a][b + 1 + c] = argv[2][c];
@@ -94,6 +104,11 @@ void set_env(char **argv)
 		environ[a + 1] = NULL;
 	}
 }
+
+/**
+  * _unsetenv - removes/unsets env var based on value passed
+  * @argv: array of arg vector passed
+  */
 void _unsetenv(char **argv)
 {
 	int a = 0, b;
@@ -125,11 +140,15 @@ void _unsetenv(char **argv)
 					a++;
 					return;
 				}
-			}		
+			}
 		}
 	}
 }
 
+/**
+  * _printenv - prints an env variable
+  * @argv: character array passed
+  */
 void _printenv(char **argv __attribute__ ((unused)))
 {
 	int index = 0;
