@@ -1,14 +1,23 @@
 #include "main.h"
 
+/**
+  * _putchar - writes a character to stdout
+  * @a: char to be writ
+  * Return: char writ in stdout
+  */
 int _putchar(char a)
 {
 	return (write(1, &a, 1));
 }
 
+/**
+  * _puts - outputs an arr of char using _putchar
+  * @buff: character array
+  */
 void _puts(char *buff)
 {
 	int a = 0;
-	
+
 	while (buff[a])
 	{
 		_putchar(buff[a]);
@@ -16,10 +25,17 @@ void _puts(char *buff)
 	}
 }
 
-char *con_cat(char *str, char* dim, char* value)
+/**
+  * con_cat - concatenates character arrays
+  * @str: character array
+  * @dim: array of char 2
+  * @value: arr of char 3
+  * Return: concatenated string
+  */
+char *con_cat(char *str, char *dim, char *value)
 {
 	char *res;
-	int a,b,c,i,len;
+	int a, b, c, i, len;
 
 	a = _strlen(str);
 	b = _strlen(dim);
@@ -27,7 +43,7 @@ char *con_cat(char *str, char* dim, char* value)
 
 	res = malloc(a + b + c + 1);
 	if (res == NULL)
-		return NULL;
+		return (NULL);
 
 	for (i = 0; str[i]; i++)
 		res[i] = str[i];
@@ -45,6 +61,11 @@ char *con_cat(char *str, char* dim, char* value)
 	return (res);
 }
 
+/**
+  * _strlen - finds length of a string
+  * @str: string passed as arr of char
+  * Return: length of string
+  */
 int _strlen(const char *str)
 {
 	int a = 0;
@@ -57,6 +78,11 @@ int _strlen(const char *str)
 	return (a);
 }
 
+/**
+  * _strdup - duplicates a string
+  * @str: string as an arg
+  * Return: concat string
+  */
 char *_strdup(char *str)
 {
 	int a = 0, b = 0;

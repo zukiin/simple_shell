@@ -58,7 +58,7 @@ char *_getenv(const char *file)
 
 /**
   * set_env - set env variable based on value provided
-  * @argv: array vector
+  * @argv: array of strings
   */
 void set_env(char **argv)
 {
@@ -107,7 +107,7 @@ void set_env(char **argv)
 
 /**
   * _unsetenv - removes/unsets env var based on value passed
-  * @argv: array of arg vector passed
+  * @argv: array of strings
   */
 void _unsetenv(char **argv)
 {
