@@ -1,6 +1,6 @@
 #include "main.h"
 
-void _isatty()
+void _isatty(void)
 {
 	const char *text_prompt = "cisfun$ ";
 

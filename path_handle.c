@@ -31,7 +31,7 @@ path_name *add_node(path_name **head, char *str)
 
 path_name *path_link(char *path)
 {
-	path_name *head = '\0';
+	path_name *head = NULL;
 	char *split, *c_path = _strdup(path);
 
 	split = strtok(c_path, ":");

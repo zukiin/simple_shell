@@ -91,7 +91,7 @@ void set_env(char **argv)
 	if (!environ[a])
 	{
 		environ[a] = con_cat(argv[1], "=", argv[2]);
-		environ[a + 1] = '\0';
+		environ[a + 1] = NULL;
 	}
 }
 void _unsetenv(char **argv)
