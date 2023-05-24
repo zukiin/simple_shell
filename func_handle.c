@@ -1,4 +1,10 @@
 #include "main.h"
+/**
+ * _atoi - converts characters to integers.
+ * @s: is the string of characters to be converted.
+ *
+ * Return: corresponding integers.
+ */
 
 int _atoi(const char *s)
 {
@@ -21,11 +27,18 @@ int _atoi(const char *s)
 	return (sign * result);
 }
 
+/**
+ *str_split - tokenizes strings.
+ *@string: string to be splitted.
+ *@delimiter: string separator.
+ *Return: arrays of splitted strings.
+ */
+
 char **str_split(char *string, const char *delimiter)
 {
 	int a, b;
-	char **array;
-	char *split, *temp;
+	char **array = NULL;
+	char *split = NULL, *temp = NULL;
 
 	temp = malloc(1 + _strlen(string));
 	if (temp == NULL)

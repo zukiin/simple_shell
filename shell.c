@@ -5,7 +5,7 @@ int main()
 	ssize_t len = 0;
 	size_t size = 0;
 	char *buffer = NULL, *result, *pathname, **argv;
-	path_name *head = '\0';
+	path_name *head = NULL;
 	void (*fptr)(char **);
 
 	signal(SIGINT, ctrl_chk);

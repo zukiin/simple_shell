@@ -1,4 +1,8 @@
 #include "main.h"
+/**
+ * _isatty - checks if a command is from the terminal.
+ * Return: nothing.
+ */
 
 void _isatty()
 {
@@ -7,7 +11,12 @@ void _isatty()
 	if (isatty(STDIN_FILENO)) 
 		write(STDOUT_FILENO, text_prompt, _strlen(text_prompt));
 }
-
+/**
+ * ctrl_chk - accommodates control - c commands.
+ * @sign: a representation for control-c.
+ *
+ * Return: nothing.
+ */ 
 void ctrl_chk(int sign)
 {
 	if (sign == SIGINT)
@@ -15,6 +24,10 @@ void ctrl_chk(int sign)
 		_puts("\n#cisfun$ ");
 	}
 }
+/**
+ * _EOF - finds the end of a string.
+ * @length: length of the string.
+ * @str:
 
 void _EOF(int length, char* str)
 {

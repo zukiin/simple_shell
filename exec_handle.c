@@ -17,7 +17,7 @@ void _exec(char **argv)
 	{
 		if (execve(argv[0], argv, environ) == -1)
 		{
-			perror(argv[0]);
+			perror("./hsh: 1",argv[0]);
 			exit(EXIT_FAILURE);
 		}
 	}

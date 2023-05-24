@@ -1,4 +1,11 @@
 #include "main.h"
+/**
+ * re_alloc - This reallocates a memory block.
+ * @ptr: pointer to previously allocated memory.
+ * @old_size:ptr size
+ * @new_size:size of the newly created memory.
+ *
+ * Return: a pointer to the newly allocated memory.*/
 
 void *re_alloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
@@ -38,7 +45,12 @@ void *re_alloc(void *ptr, unsigned int old_size, unsigned int new_size)
 	}
 	return (new);
 }
-
+/**
+ * free_argv: frees an array of strings.
+ * @arg: array to be freed.
+ *
+ * Return: nothing
+ */
 void free_argv(char **arg)
 {
 	int a;
