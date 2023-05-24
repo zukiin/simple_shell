@@ -43,12 +43,19 @@ path_name *path_link(char *path)
 	return (head);
 }
 
+/**
+  * find_path - searches for a specific file in linked list
+  * @head: head node
+  * @filename: file to find
+  * Return: NULL if file not found, file path on success
+  */
 char *find_path(path_name *head, char *filename)
 {
 	struct stat status;
 	char *string;
 
 	path_name *temp = head;
+
 	while (temp)
 	{
 		string = con_cat(temp->dir, "/", filename);
@@ -62,6 +69,10 @@ char *find_path(path_name *head, char *filename)
 	return (NULL);
 }
 
+/**
+  * _freelist - frees memory allocated for linked list
+  * @head: head/last node
+  */
 void _freelist(path_name *head)
 {
 	path_name *temp;
