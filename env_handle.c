@@ -65,11 +65,8 @@ void set_env(char **argv)
 	int a = 0, b = 0, c = 0;
 
 	environ = (char **) malloc(_strlen(argv[0] + strlen(argv[1] + 2)));
-	if (environ == NULL)
-	{
-		perror("Memory allocation error");
-		return;
-	}
+	(environ == NULL) ? (perror("Memory allocation error"), return) : 0;
+
 	if (!argv[1] || !argv[2])
 	{
 		perror(_getenv("-"));
