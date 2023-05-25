@@ -1,11 +1,6 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-/*typedef struct {
-	const char *name;
-	void (*func)(char **argv);
-} Command; */
-
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
@@ -19,50 +14,48 @@
 #include <sys/stat.h>
 #include <limits.h>
 
-#define min(a, b) (((a) < (b)) ? (a) : (b))
-
-#define EXTERNAL_COMMAND 1
-#define INTERNAL_COMMAND 2
-#define PATH_COMMAND 3
-#define INVALID_COMMAND -1
-
-extern char *term;
-extern char **cmd;
-extern char *name;
-extern int status;
 extern char **environ;
 
-typedef struct {
-	char *name;
+typedef struct
+{
+	const char *name;
 	void (*func)(char **argv);
 } Command;
 
-void *_realloc(void *p, size_t old, size_t new);
-void handle_ctrlc(int signum);
-void env(char **command __attribute__((unused)));
-void ex_it(char **input);
-char *_strtok(char *str, char *dem, char **ptr);
-int _atoi(char *s);
-void _strcpy(char *from, char *to);
-int _strlen(char *str);
-void wipe_nl(char *string);
- void _puts(char *str, int stream);
-int _strcmp(char *s1, char *s2);
-char *_strcat(char *to, char *from);
-int _strcspn(char *s, char *p);
-int _strspn(char *s, char *p);
-char *_strchr(char *str, char c);
-void prompt(char **input_str, int input);
-char **splitter(char *str, char *dem);
-void _puts(char *str, int stream);
-void handle_com(char *com);
-void from_term(void);
-void (*get_func(char *cmd))(char **);
-char *_getenv(char *name);
-int parse_cmd(char *input);
-char *path_chk(char *input);
-void _exec(char **input_str, int input);
-int parse_cmd(char *input);
+typedef struct path_name
+{
+	char *dir;
+	struct path_name *ptr;
+} path_name;
 
+char **str_split(char *string, const char *delimiter);
+int _atoi(const char *s);
+void (*inbuilt(char **argv))(char **argv);
+void prompt(char **av, char **env);
+int text_prompt(void);
+int _putchar(char c);
+int _getline(char *buffer, size_t size);
+int pathchk(char *str);
+char *filechk(char *str);
+path_name *_add_node(path_name **head, char *str);
+path_name *path_link(char *path);
+void _freelist(path_name *head);
+char *find_path(path_name *head, char *filename);
+void _isatty(void);
+void ctrl_chk(int sign);
+void _EOF(int length, char *str);
+int _putchar(char a);
+void _puts(char *buff);
+void free_argv(char **arg);
+void _printenv(char **argv __attribute__ ((unused)));
+void _unsetenv(char **argv);
+void set_env(char **argv);
+char *_getenv(const char *file);
+void term_exit(char **argv);
+char *con_cat(char *str, char *dim, char *value);
+int _strlen(const char *str);
+void *re_alloc(void *ptr, unsigned int old_size, unsigned int new_size);
+char *_strdup(char *str);
+void _exec(char **argv);
 
-#endif 
+#endif
