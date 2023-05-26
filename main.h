@@ -1,11 +1,6 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-/*typedef struct {
-	const char *name;
-	void (*func)(char **argv);
-} Command; */
-
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
@@ -21,12 +16,14 @@
 
 extern char **environ;
 
-typedef struct {
+typedef struct
+{
 	const char *name;
 	void (*func)(char **argv);
 } Command;
 
-typedef struct path_name{
+typedef struct path_name
+{
 	char *dir;
 	struct path_name *ptr;
 } path_name;
@@ -46,7 +43,7 @@ void _freelist(path_name *head);
 char *find_path(path_name *head, char *filename);
 void _isatty(void);
 void ctrl_chk(int sign);
-void _EOF(int length, char* str);
+void _EOF(int length, char *str);
 int _putchar(char a);
 void _puts(char *buff);
 void free_argv(char **arg);
@@ -55,7 +52,7 @@ void _unsetenv(char **argv);
 void set_env(char **argv);
 char *_getenv(const char *file);
 void term_exit(char **argv);
-char *con_cat(char *str, char* dim, char* value);
+char *con_cat(char *str, char *dim, char *value);
 int _strlen(const char *str);
 void *re_alloc(void *ptr, unsigned int old_size, unsigned int new_size);
 char *_strdup(char *str);

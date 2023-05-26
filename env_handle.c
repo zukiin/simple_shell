@@ -65,7 +65,11 @@ void set_env(char **argv)
 	int a = 0, b = 0, c = 0;
 
 	environ = (char **) malloc(_strlen(argv[0] + strlen(argv[1] + 2)));
-	(environ == NULL) ? (perror("Memory allocation error"), return) : 0;
+	if (environ == NULL)
+	{
+		perror("Memory allocation error");
+		return;
+	}
 
 	if (!argv[1] || !argv[2])
 	{
@@ -76,19 +80,15 @@ void set_env(char **argv)
 	{
 		if (argv[1][b] == environ[a][b])
 		{
-			while (argv[1][b])
+			for (; argv[1][b]; b++)
 			{
 				if (argv[1][b] != environ[a][b])
 					break;
-				b++;
 			}
 			if (argv[1][b] == '\0')
 			{
-				while (argv[2][c])
-				{
+				for (; argv[2][c]; c++)
 					environ[a][b + 1 + c] = argv[2][c];
-					c++;
-				}
 				environ[a][b + 1 + c] = '\0';
 				free(environ);
 				return;
@@ -112,7 +112,7 @@ void _unsetenv(char **argv)
 
 	if (!argv[1])
 	{
-		perror("Error (unsetenv)");
+		perror(_getenv("-"));
 		return;
 	}
 	for (; environ[a]; a++)
