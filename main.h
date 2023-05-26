@@ -16,12 +16,22 @@
 
 extern char **environ;
 
-typedef struct
+/**
+  * struct finder - declaration
+  * @name: name
+  * @func: funct to call
+  */
+typedef struct finder
 {
 	const char *name;
 	void (*func)(char **argv);
 } Command;
 
+/**
+  * struct path_name - a struct to find a pathname
+  * @dir: directory
+  * @ptr: pointer
+  */
 typedef struct path_name
 {
 	char *dir;
