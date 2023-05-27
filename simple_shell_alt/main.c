@@ -1,45 +1,55 @@
-#include "main.h"
+#include "shell.h"
 
-int status = 0;
-char *term = NULL;
-char *name = NULL;
-char **cmd = NULL;
+	char **cmds = NULL;
+	char *term= NULL;
+	char *name = NULL;
+	int status = 0;
 
-int main(int argc __attribute__((unused)), char **argv)
+/**
+* main - the main shell code
+* @argc: number of arguments passed
+* @argv: program arguments to be parsed
+
+* Return: 0 on success
+*/
+
+
+	int main(int argc __attribute__((unused)), char **argv)
 {
+	char **command = NULL;
+	int a, c_type = 0;
 	size_t n = 0;
-	char **input_str =NULL;
-	int a = 0, input = 0;
 
 	signal(SIGINT, handle_ctrlc);
 	name = argv[0];
 	while (1)
 	{
-		from_term();
-		_puts(" cisfun$ ", STDOUT_FILENO);
+		non_terminal();
+		_puts(" ($) ", STDOUT_FILENO);
+
 		if (getline(&term, &n, stdin) == -1)
 		{
 			free(term);
 			exit(status);
 		}
-		handle_com(term);
 		wipe_nl(term);
-		cmd = splitter(term, ";");
-	
-		while (cmd[a] != NULL)
+		wipe_com(term);
+		cmds = splitter(term, ";");
+
+		for (a = 0; cmds[a] != NULL; a++)
 		{
-			input_str = splitter(cmd[a], " ");
-			if (input_str[0] == NULL)
+			command = splitter(cmds[a], " ");
+			if (command[0] == NULL)
 			{
-				free(input_str);
-				break;
+				free(command);
+					break;
 			}
-			input = parse_cmd(input_str[0]);
-			prompt(input_str, input);
-			free(input_str);
-			a++;
+			c_type = prep(command[0]);
+
+			prompt(command, c_type);
+			free(command);
 		}
-		free(cmd);
+			free(cmds);
 	}
 	free(term);
 	return (status);
